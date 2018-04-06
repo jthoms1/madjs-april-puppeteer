@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "allowUnreachableCode": false,
+    "esModuleInterop": true,
+    "declaration": true,
+    "importHelpers": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "pretty": true,
+    "strict": true,
+    "target": "es2017",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "dom",
+      "es2017"
+    ]
+  },
+  "include": [
+    "src",
+    "./types"
+  ],
+  "exclude": [
+    "node_modules",
+    "src/**/__tests__/*.ts"
+  ]
+}

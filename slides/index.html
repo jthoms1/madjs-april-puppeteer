@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Intro to TypeScript - GDG</title>
+    <link href="//fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+
+    </script>
+
+    <style>
+      .reveal h2 {
+        margin-bottom: 40px;
+      }
+      body > div.reveal {
+        font-family: 'Poppins', sans-serif;
+        color: #B9C0D2;
+      }
+      img.emoji {
+        width: 45px;
+      }
+      h2 img.emoji {
+        width: 52px;
+      }
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5 {
+        font-family: 'Montserrat', sans-serif;
+        color: #FFF;
+        text-transform: none;
+      }
+      .reveal section img.nostyle {
+          background: none;
+          border: none;
+          box-shadow: none;
+          margin: 0;
+      }
+      .reveal section img.roundup {
+          border: 2px solid #fff;
+          height: 40px;
+    	    width: 40px;
+    	    border-radius: 23px;
+    	    display: block;
+    	    margin: -15px auto 0;
+      }
+      .example-num {
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        font-size: 0.8em;
+        color: grey;
+      }
+      b {
+        font-weight: normal;
+        color:aqua;
+      }
+      i {
+        font-style: normal;
+        color: yellow;
+      }
+      img.trans {
+        background-color: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h3>Intro to TypeScript</h3>
+          <p>
+            <small>
+              Dan Imhoff / <a href="http://twitter.com/dwieeb">@dwieeb</a>
+            </small>
+            <img class="roundup" src="images/dwieeb-logo.jpg" />
+          </p>
+          <p>
+            <small>
+              Josh Thomas / <a href="http://twitter.com/jthoms1">@jthoms1</a>
+            </small>
+            <img class="roundup" src="images/jthoms1-logo.png" />
+          </p>
+          <aside class="notes">
+            <li>If you have any questions during please interupt. It is likely if you have
+              a question others are probably thinking the same thing.
+            </li>
+          </aside>
+        </section>
+
+        <section>
+          <h2>
+            <span>
+              I <img class="nostyle emoji" src="images/heart.png"/> JavaScript
+            </span>
+          </h2>
+          <aside class="notes">
+            <li>I joined Ionic 2 years ago.
+            <li>At the time I was writing primarily React applications
+            <li>My preferred experience was Babel and a well tuned Eslint config.
+            <li>And I loved writing JavaScript.
+          </aside>
+        </section>
+        <section>
+          <h2>
+            <span>
+              I <img class="nostyle emoji" src="images/broken-heart.png"/> TypeScript
+            </span>
+          </h2>
+          <aside class="notes">
+            <li>6 months after started I was tasked with rewriting our Node CLI in Typescript.
+            <li>It took about 2 weeks of constantly fighting with the compiler before I
+              started to feel comfortable and began embracing it.
+          </aside>
+        </section>
+        <section>
+          <h2>
+            <span>
+              I <img class="nostyle emoji" src="images/heart.png"/> TypeScript
+            </span>
+          </h2>
+          <aside class="notes">
+            <li>I still consider myself new to Typescript even after writing it for 1 1/2 years.
+            <li>I would say now I love TypeScript more.</li>
+          </aside>
+        </section>
+
+        <section>
+          <img class="nostyle rounded" src="images/twitter-ts-love.png"/>
+          <aside class="notes">
+            <li>I should now consider myself an evangelist.</li>
+          </aside>
+        </section>
+
+        <section>
+          <h2>I am not the only one.</h2>
+          <img src="images/loved-languages.png" />
+          <aside class="notes">
+            <li>Recent survey by Stack Overflow showing most loved languages</li>li>
+          </aside>
+        </section>
+
+        <section>
+          <img class="trans" src="images/typescript-logo-lrg.png" width="500" />
+          <blockquote>
+            JavaScript that scales.
+          </blockquote>
+          <aside class="notes">
+            <li>This is the tagline the team has given to typescript.
+          </aside>
+        </section>
+
+        <section>
+          <h2>Typescript's Beginnings</h2>
+          <ul>
+            <li class="fragment">Released in October 2012 (0.8)</li><br/>
+            <li class="fragment">Created by Anders Hejlsberg</li><br/>
+            <li class="fragment">Open Source</li><br/>
+            <li class="fragment">Created because of the explosive growth of JavaScript</li>
+          </ul>
+          <aside class="notes">
+            <li>Anders Created Turbo Pascal, Delphi, C#</li>
+            <li>First public release was Open Source, not sure if it was the first
+              from Microsoft but it was seen as a turning point for Microsoft's relationship
+              with developers.
+            </li>
+            <li>Microsoft saw that some tools were being built to create JavaScript where
+              the source language was not JS. They felt with the way JS was moving it was important
+              to have a language that was closer to the source but still be able to create large
+              reliable codebases.
+            </li>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Who is using it?</h2>
+          <ul>
+            <li>Google</li>
+            <li>Angular</li>
+            <li>Lyft</li>
+            <li>Microsoft</li>
+            <li>Dojo</li>
+            <li>Ionic</li>
+            <li>Epic</li>
+          </ul>
+          <aside class="notes">
+            These are just the ones off the top of my head.
+          </aside>
+        </section>
+
+        <section>
+          <h2>But what is it?</h2>
+          <ul>
+            <li class="fragment">"Superset" of JavaScript</li><br/>
+            <li class="fragment">Type system for JS
+              <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html">Basic Types Available</a></li><br/>
+            <li class="fragment">Compiles to plain JS</li>
+          </ul>
+          <aside class="notes">
+            <li>This means that JavaScript is valid Typescript.  Typescript has optional types that you can add.</li>
+            <li>A type system is a way of describing all the possible types of a varible, expression, function, class, etc.</li>
+            <li>Compiles similar to Babel down to ES6, ES5, ES3 etc.</li>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Goals of TypeScript</h2>
+          <img src="images/ts-goals.png" />
+        </section>
+
+        <section>
+          <h2>Why types?</h2>
+          <ul>
+            <li class="fragment">Improve code quality &amp; understandability</li><br/>
+            <li class="fragment">Boost refactoring speed and effectiveness</li>
+          </ul>
+          <aside class="notes">
+            <li>Whether you realize it or not when you read JS code you are inferring what types variables are.
+              But you are not doing a very good job. Why not be explicit and let the compiler tell you if you are wrong.
+            <li>This is really hard to explain until you try it for the first time.  There is a really large amount
+              of confidence you gather when rewriting parts of the system knowing if it affects other parts you will know
+              based on compiler errors.
+          </aside>
+        </section>
+
+        <section>
+          <h2>Lets add it to an existing project</h2>
+          <ol>
+            <li class="fragment">Drop in a tsconfig.json and start compiling</li><br/>
+            <li class="fragment">Incrementally add types</li><br/>
+            <li class="fragment">Get Strict</li><br/>
+          </ol>
+          <aside class="notes">
+            <li>I have some demo code that I am going to run through and show you how to add TypeScript
+              to an existing project step by step.
+
+              "strict": true,
+          </aside>
+        </section>
+
+        <section>
+          <h1>The Type System</h1>
+        </section>
+
+        <section>
+          <h2>Type System</h2>
+          <ul>
+            <li class="fragment"><b>Static, but gradual</b>: types don't change during runtime, but are opt-in</li>
+            <li class="fragment"><b>Structural</b>: structure of an object preferred over the name of its class (duck typing)</li>
+            <li class="fragment"><b>Inferred</b>: data types of expressions can be inferred by the compiler</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Declaration Spaces</h2>
+          <ul>
+            <li class="fragment"><b>Value space</b>: classes, functions, variables</li>
+            <li class="fragment"><b>Type space</b>: classes, interfaces, type annotations &amp; aliases</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Declaring Types</h2>
+          <pre class="fragment"><code>
+          var num: number = 1;
+          </code></pre>
+          <pre class="fragment"><code>
+          function slugify(input: string): string {
+            // implementation
+          }
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Implicit vs Explicit</h2>
+          <pre><code>
+          let num = 1; // implicit, AKA inferred
+
+          let num: number = 1; // explicit
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Type Inference</h2>
+          <pre><code>
+          /**
+           * Cases: a &gt; b: return 1
+           *        a &lt; b: return -1
+           *        a = b: return 0
+           */
+          function strcmp(a: string, b: string) {
+            if (a === b) {
+              return 0;
+            }
+
+            return a &gt; b ? 1 : -1;
+          }
+
+          let result = strcmp("foo", "bar");
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Interfaces</h1>
+        </section>
+
+        <section>
+          <h2>Interfaces</h2>
+          <ul>
+            <li class="fragment">Defined in type declaration space</li>
+            <li class="fragment">Duck typed</li>
+            <li class="fragment">Meant for describing the shape of objects, classes, and functions</li>
+            <li class="fragment">Can be named or anonymous</li>
+            <li class="fragment">Can be "implemented"</li>
+            <li class="fragment">Can be "extended"</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Implementing Interfaces</h2>
+          <ul>
+            <li class="fragment">"This class <em>must</em> adhere to this interface"</li>
+            <li class="fragment">Classes can implement one or more interfaces</li>
+          </ul>
+          <pre class="fragment"><code>
+          interface Reader {
+            read(bytes: number): string;
+          }
+
+          class FileReader implements Reader {
+            read(bytes: number) {
+              // implementation
+            }
+          }
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Extending Interfaces</h2>
+          <pre><code>
+          interface Reader {
+            read(bytes: number): string;
+          }
+
+          interface Writer {
+            write(str: string): void;
+          }
+
+          interface ReadStream extends Reader {
+            pipe(destination: Writer): void;
+          }
+
+          interface ReaderWriter extends Reader, Writer {}
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Type Aliases</h2>
+          <ul>
+            <li class="fragment">Defined in type declaration space</li>
+            <li class="fragment">Used for type declaration reusability</li>
+          </ul>
+          <pre class="fragment"><code>
+   type MyCustomType = string;
+   type MyCallbackFunc = (err: Error, data: MyInterface) =&gt; void;
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Union Types</h2>
+          <ul>
+            <li class="fragment">Two or more joined types</li>
+            <li class="fragment">"this <b>or</b> that"</li>
+          </ul>
+          <pre class="fragment"><code>
+          let strOrNum: string | number = "a string";
+          strOrNum = 12345; // ok
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Intersection Types</h2>
+          <ul>
+            <li class="fragment">Two or more joined types</li>
+            <li class="fragment">"this <b>and</b> that"</li>
+          </ul>
+          <pre class="fragment"><code>
+          interface Foo {
+            foo: number;
+          }
+
+          interface Bar {
+            bar: number;
+          }
+
+          let foobar: Foo &amp; Bar = { foo: 1, bar: 2 };
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Generics</h2>
+          <ul>
+            <li class="fragment ">Allows a component to work over a variety of types</li>
+            <li class="fragment ">Example: you can have arrays <b>of</b> anything</li>
+          </ul>
+        </section>
+
+        <section>
+          <pre><code>
+     let meetups: Array&lt;string&gt; = ["GDG", "MadJS", "MadPy"];
+          </code></pre>
+          <pre class="fragment "><code>
+     let meetups: string[] = ["GDG", "MadJS", "MadPy"];
+          </code></pre>
+          <pre class="fragment "><code>
+     let meetups = ["GDG", "MadJS", "MadPy"];
+          </code></pre>
+        </section>
+
+        <section>
+          <pre><code>
+          let p = new Promise&lt;number&gt;(function(resolve, reject) {
+            resolve("nope."); // compile error
+          });
+
+          p.then(function(value) {
+            // 'value' is a number, no explicit types needed
+          });
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Defining Generics</h2>
+          <ul>
+            <li>Generics have one or more <b>type parameter</b></li>
+          </ul>
+          <pre><code>
+          function fillArray&lt;T&gt;(array: any[], value: T): T[] {
+            // implementation
+          }
+
+          let result = fillArray&lt;string&gt;([1, 2, 3], '');
+          </code></pre>
+          <pre class="fragment "><code>
+          let result = fillArray([1, 2, 3], '');
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Questions?</h2>
+          <br/>
+          <ul>
+            <li>
+              <a href="https://github.com/dzharii/awesome-typescript">https://github.com/dzharii/awesome-typescript</a>
+            </li>
+            <li>
+              <a href="https://basarat.gitbooks.io/typescript/content/">https://basarat.gitbooks.io/typescript/content/</a>
+            </li>
+            <li>
+              <a href="https://tc39.github.io/process-document/">https://tc39.github.io/process-document/</a>
+            </li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'none', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>

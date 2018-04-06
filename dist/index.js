@@ -16,11 +16,7 @@ function diffImageBuffers(buffer1, buffer2) {
     var diffs = pixelmatch_1.default(png1.data, png2.data, diff.data, diff.width, diff.height);
     return [diffs, diff];
 }
-async function screenshot(url, emulatedDevice) {
-    const browser = await puppeteer_1.launch();
-    const page = await browser.newPage();
-    await page.emulate(emulatedDevice);
-    await page.goto(url);
+async function screenshotDiffPage(page) {
     const baseline = await page.screenshot();
     const link = await page.$(`a[href='/demos']`);
     if (link === null) {
@@ -28,21 +24,38 @@ async function screenshot(url, emulatedDevice) {
     }
     await link.hover();
     const hovered = await page.screenshot();
-    await browser.close();
+    await link.dispose();
     const [diffs, diffPng] = diffImageBuffers(baseline, hovered);
     if (diffs > 0) {
         diffPng.pack().pipe(fs_1.default.createWriteStream('diff.png'));
     }
 }
-exports.screenshot = screenshot;
-async function trace(url) {
-    const browser = await puppeteer_1.launch();
-    const page = await browser.newPage();
+exports.screenshotDiffPage = screenshotDiffPage;
+async function evaulateOnPage(page) {
+    const link = await page.$(`a[href='/demos']`);
+    if (!link) {
+        return;
+    }
+    await link.click();
+    const results = await page.evaluate(async (anchorElement) => {
+        return anchorElement.classList;
+    }, link);
+    console.log(results);
+}
+exports.evaulateOnPage = evaulateOnPage;
+async function trace(page, url) {
     await page.tracing.start({ path: 'trace.json' });
     await page.goto(url);
     await page.tracing.stop();
-    await browser.close();
 }
 exports.trace = trace;
 const inUrl = process.argv[2];
-screenshot(inUrl, DeviceDescriptors_1.default['iPhone 6']);
+puppeteer_1.launch()
+    .then(async function (browser) {
+    const page = await browser.newPage();
+    await page.emulate(DeviceDescriptors_1.default['iPhone 6']);
+    await page.goto(inUrl);
+    // await screenshotDiffPage(page);
+    await evaulateOnPage(page);
+    await browser.close();
+});

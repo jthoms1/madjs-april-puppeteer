@@ -1,5 +1,5 @@
-import { launch } from 'puppeteer';
-import devices, { DeviceDescription } from 'puppeteer/DeviceDescriptors';
+import { launch, Page } from 'puppeteer';
+import devices from 'puppeteer/DeviceDescriptors';
 import pixelmatch from 'pixelmatch';
 import { PNG } from 'pngjs';
 import fs from 'fs';
@@ -17,12 +17,7 @@ function diffImageBuffers(buffer1: Buffer, buffer2: Buffer): [number, PNG] {
   return [diffs, diff];
 }
 
-export async function screenshot(url: string, emulatedDevice: DeviceDescription) {
-  const browser = await launch();
-  const page = await browser.newPage();
-
-  await page.emulate(emulatedDevice);
-  await page.goto(url);
+export async function screenshotDiffPage(page: Page) {
 
   const baseline = await page.screenshot();
 
@@ -31,29 +26,49 @@ export async function screenshot(url: string, emulatedDevice: DeviceDescription)
     return;
   }
   await link.hover();
-
   const hovered = await page.screenshot();
-
-  await browser.close();
+  await link.dispose();
 
   const [diffs, diffPng] = diffImageBuffers(baseline, hovered);
-
   if (diffs > 0) {
     diffPng.pack().pipe(fs.createWriteStream('diff.png'));
   }
 }
 
+export async function evaulateOnPage(page: Page) {
 
-export async function trace(url: string) {
-  const browser = await launch();
-  const page = await browser.newPage();
+  const link = await page.$(`a[href='/demos']`);
+  if (!link) { return; }
+
+  await link.click();
+
+  const results = await page.evaluate((anchorElement: HTMLAnchorElement) => {
+
+    return anchorElement.classList;
+  }, link);
+
+  await link.dispose();
+
+  console.log(results);
+}
+
+
+export async function trace(page: Page, url: string) {
   await page.tracing.start({path: 'trace.json'});
   await page.goto(url);
   await page.tracing.stop();
-
-  await browser.close();
 }
 
 const inUrl = process.argv[2];
 
-screenshot(inUrl, devices['iPhone 6']);
+launch()
+  .then(async function(browser) {
+    const page = await browser.newPage();
+    await page.emulate(devices['iPhone 6']);
+    await page.goto(inUrl);
+
+    // await screenshotDiffPage(page);
+    await evaulateOnPage(page);
+
+    await browser.close();
+  });

@@ -1,3 +1,4 @@
-import { DeviceDescription } from 'puppeteer/DeviceDescriptors';
-export declare function screenshot(url: string, emulatedDevice: DeviceDescription): Promise<void>;
-export declare function trace(url: string): Promise<void>;
+import { Page } from 'puppeteer';
+export declare function screenshotDiffPage(page: Page): Promise<void>;
+export declare function evaulateOnPage(page: Page): Promise<void>;
+export declare function trace(page: Page, url: string): Promise<void>;

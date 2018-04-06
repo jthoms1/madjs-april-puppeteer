@@ -19,12 +19,12 @@
   },
   "homepage": "https://github.com/jthoms1/madjs-april-puppeteer#readme",
   "dependencies": {
-    "@types/pixelmatch": "^4.0.0",
-    "@types/pngjs": "^3.3.1",
     "pixelmatch": "^4.0.2",
     "puppeteer": "^1.2.0"
   },
   "devDependencies": {
+    "@types/pixelmatch": "^4.0.0",
+    "@types/pngjs": "^3.3.1",
     "@types/puppeteer": "^1.2.1",
     "tslib": "^1.9.0",
     "typescript": "^2.8.1"

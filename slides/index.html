@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Intro to TypeScript - GDG</title>
+    <title>Learning Puppeteer</title>
     <link href="//fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
     <link href="//fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
@@ -94,7 +94,7 @@
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
         <section>
-          <h3></h3>
+          <h3>Learning Puppeteer</h3>
           <p>
             <small>
               Josh Thomas / <a href="http://twitter.com/jthoms1">@jthoms1</a>
@@ -107,28 +107,86 @@
             </li>
           </aside>
         </section>
+        <section>
+          <img src="images/puppeteer.png" class="nostyle" />
+          <aside class="notes">
+            Puppeteer is a Node library which provides a high-level API to control headless Chromium
+            over the DevTools Protocol.
+          </aside>
+        </section>
+        <section>
+          <h3>What does it compare to?</h3>
+          <div class="fragment">
+            <h6>Web scrappers</h6>
+            <ul>
+              <li>Nightmare</li>
+              <li>Phantomjs</li>
+              <li>CasperJS</li>
+            </ul><br/><br/>
+          </div>
+          <div class="fragment">
+            <h6>Web Testing Tools</h6>
+            <ul>
+              <li>jsdom</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <h3>So why another tool?</h3><br/><br/>
+          <h3 class="fragment">Why do you usually use Chrome over other browsers?</h3>
+        </section>
 
-        - What is it?
+        <section>
+          <p>Puppeteer is a Node library which provides a high-level API to control headless Chromium
+            over the <b>DevTools Protocol</b>.</p>
+        </section>
 
-        - What does it compare to?
+        <section>
+          <h3>What can you do with it?</h3>
+          <ul>
+            <li>Generate screenshots and PDFs of pages.</li><br/>
+            <li>Server side rendering of Single Page Apps</li><br/>
+            <li>Automate UI testing</li><br/>
+            <li>Create an automated testing environment in the latest version of Chrome</li><br/>
+            <li>Capture a timeline trace.</li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>Generate screenshots / PDFs of pages.</li><br/>
+              <li>Crawl a SPA and generate pre-rendered content (i.e. "SSR").</li><br/>
+              <li>Automate form submission, UI testing, keyboard input, etc.</li><br/>
+              <li>Create an automated testing environment. Run your tests directly in the latest version of Chrome using the latest JavaScript and browser features.</li><br/>
+              <li>Capture a timeline trace of your site to help diagnose performance issues.</li>
+            </ul>
+          </aside>
+        </section>
 
-        - Wait why do you need headless chrome if it is just like other tools.
+        <section>
+          <h3>Approaching Puppeteer</h3>
+          <ul>
+            <li class="fragment">How would I accomplish this in Chrome?</li>
+            <li class="fragment">What is the equivalent API?</li>
+            <li class="fragment">How can we automate?</li>
+          </ul>
+        </section>
 
-        -
-
-        - What can you do with it?
-
-        - Generate screenshots and PDFs of pages.
-        - Crawl a SPA and generate pre-rendered content (i.e. "SSR").
-        - Automate form submission, UI testing, keyboard input, etc.
-        - Create an up-to-date, automated testing environment. Run your tests directly in the latest version of Chrome using the latest JavaScript and browser features.
-        - Capture a timeline trace of your site to help diagnose performance issues.
-        - https://github.com/bcoe/puppeteer-to-istanbul-example/blob/master/index.js
-        - Load a Chrome extension
+        <section>
+          <h3>Generate screenshots / PDFs of pages.</h3>
+          <ul>
+            <li class="fragment">How would I accomplish this in Chrome?</li>
+            <li class="fragment">
+              API - <a href="https://github.com/GoogleChrome/puppeteer/blob/v1.2.0/docs/api.md#pagescreenshotoptions">
+                Puppeteer API 'pagescreenshotoptions'
+              </a></li>
+            <li class="fragment">Automate</li>
+          </ul>
+        </section>
 
         <section>
           <h2>But what is it?</h2>
           <ul>
+        - https://github.com/bcoe/puppeteer-to-istanbul-example/blob/master/index.js
+        - Load a Chrome extension
             <li class="fragment">"Superset" of JavaScript</li><br/>
             <li class="fragment">Type system for JS
               <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html">Basic Types Available</a></li><br/>

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node ./dist/index.js",
+    "start": "stencil-dev-server --root slides --watchGlob 'slides/**'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,6 +23,7 @@
     "puppeteer": "^1.2.0"
   },
   "devDependencies": {
+    "@stencil/dev-server": "0.0.18",
     "@types/pixelmatch": "^4.0.0",
     "@types/pngjs": "^3.3.1",
     "@types/puppeteer": "^1.2.1",

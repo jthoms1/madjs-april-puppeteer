@@ -1,5 +1,5 @@
-
-import { Page } from 'puppeteer';
+import { launch, Page } from 'puppeteer';
+import devices from 'puppeteer/DeviceDescriptors';
 import pixelmatch from 'pixelmatch';
 import { PNG } from 'pngjs';
 import fs from 'fs';
@@ -17,8 +17,9 @@ function diffImageBuffers(buffer1: Buffer, buffer2: Buffer): [number, PNG] {
   return [diffs, diff];
 }
 
-export async function screenshotDiffPage(page: Page) {
+export async function screenshotDiffPage(page: Page, url: string) {
 
+  await page.goto(url, { waitUntil: 'networkidle0' });
   const baseline = await page.screenshot();
 
   const link = await page.$(`a[href='/demos']`);
@@ -34,3 +35,17 @@ export async function screenshotDiffPage(page: Page) {
     diffPng.pack().pipe(fs.createWriteStream('diff.png'));
   }
 }
+
+const inUrl = 'https://stenciljs.com';
+const filePath = 'index.html';
+
+launch()
+  .then(async function(browser) {
+    const page = await browser.newPage();
+    await page.emulate(devices['iPhone 6']);
+
+    const html = await screenshotDiffPage(page, inUrl);
+    fs.writeFileSync(filePath, html, { encoding: 'utf8' });
+
+    await browser.close();
+  });
